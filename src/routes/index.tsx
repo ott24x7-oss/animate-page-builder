@@ -18,8 +18,8 @@ export const Route = createFileRoute("/")({
     meta: [
       { title: "AutoStore24 — Sell digital products, automatically" },
       { name: "description", content: "Launch your branded Telegram Bot, Mini App and website in days. Accept UPI + USDT, auto-deliver keys, manage every order from one dashboard." },
-      { property: "og:title", content: "AutoStore24 — Telegram Commerce, Automated" },
-      { property: "og:description", content: "Bot · Mini App · Website. 24×7 automated selling." },
+      { property: "og:title", content: "AutoStore24 — Sell digital products, automatically" },
+      { property: "og:description", content: "Launch your branded Telegram Bot, Mini App and website in days. Accept UPI + USDT, auto-deliver keys, manage every order from one dashboard." },
     ],
   }),
   component: Landing,
