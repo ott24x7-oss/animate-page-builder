@@ -16,28 +16,17 @@ const KILL_ANIMATIONS = `
   html { scroll-behavior: auto !important; }
 `;
 
-async function prepare(page: Page, path: string) {
+async function prepare(page: Page, path: string, anchorTestId?: string) {
   page.setDefaultTimeout(60_000);
-  await page.goto(path, { waitUntil: "domcontentloaded", timeout: 60_000 });
+  await page.goto(path, { waitUntil: "load", timeout: 60_000 });
+  if (anchorTestId) {
+    await page.getByTestId(anchorTestId).first().waitFor({ state: "attached", timeout: 30_000 });
+  }
+  // Let hydration settle before evaluating in the page context.
+  await page.waitForTimeout(1200);
   await page.addStyleTag({ content: KILL_ANIMATIONS });
-  // Best-effort image wait, capped at 15s so a slow CDN doesn't hang the test.
-  await Promise.race([
-    page.evaluate(
-      () =>
-        Promise.all(
-          Array.from(document.images).map(
-            (img) =>
-              new Promise<void>((r) => {
-                if (img.complete && img.naturalWidth > 0) return r();
-                img.addEventListener("load", () => r(), { once: true });
-                img.addEventListener("error", () => r(), { once: true });
-              }),
-          ),
-        ),
-    ),
-    page.waitForTimeout(15_000),
-  ]);
-  await page.waitForTimeout(400);
+  await page.waitForLoadState("networkidle", { timeout: 30_000 }).catch(() => {});
+  await page.waitForTimeout(500);
 }
 
 async function snap(el: Locator, name: string) {
