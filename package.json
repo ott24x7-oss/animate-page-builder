@@ -4,6 +4,10 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
+    "validate:css": "node scripts/validate-css.mjs",
+    "predev": "node scripts/validate-css.mjs",
+    "prebuild": "node scripts/validate-css.mjs",
+    "prebuild:dev": "node scripts/validate-css.mjs",
     "dev": "vite dev",
     "build": "vite build",
     "build:dev": "vite build --mode development",
