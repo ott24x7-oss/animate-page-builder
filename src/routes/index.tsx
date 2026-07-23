@@ -16,9 +16,9 @@ import adminBlog from "@/assets/admin-blog.png.asset.json";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "AutoStore24 — Sell digital products, automatically" },
+      { title: "Store24x7 — Sell digital products, automatically" },
       { name: "description", content: "Launch your branded Telegram Bot, Mini App and website in days. Accept UPI + USDT, auto-deliver keys, manage every order from one dashboard." },
-      { property: "og:title", content: "AutoStore24 — Sell digital products, automatically" },
+      { property: "og:title", content: "Store24x7 — Sell digital products, automatically" },
       { property: "og:description", content: "Launch your branded Telegram Bot, Mini App and website in days. Accept UPI + USDT, auto-deliver keys, manage every order from one dashboard." },
     ],
   }),
