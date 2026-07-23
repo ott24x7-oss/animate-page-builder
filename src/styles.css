@@ -204,6 +204,9 @@
   --shadow-ember:
     0 20px 40px -18px oklch(0.7 0.2 290 / 0.6),
     0 0 32px -12px oklch(0.78 0.15 210 / 0.4);
+}
+
+
 
 
 @layer base {
