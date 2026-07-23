@@ -14,6 +14,11 @@ const KILL_ANIMATIONS = `
     caret-color: transparent !important;
   }
   html { scroll-behavior: auto !important; }
+  /* Freeze Framer Motion inline transforms on mockup wrappers so screenshots stabilize. */
+  [data-testid^="mockup-"], [data-testid^="mockup-"] * {
+    transform: none !important;
+    opacity: 1 !important;
+  }
 `;
 
 async function prepare(page: Page, path: string, anchorTestId?: string) {
