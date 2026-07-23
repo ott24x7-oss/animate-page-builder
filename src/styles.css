@@ -37,72 +37,106 @@
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
+/* ---------- Light Neumorphic base ----------
+   Neumorphism needs surfaces and background to share the same tone.
+   Skeuo accents (buttons) use warm ember gradients + inner highlight.
+   Glass is white-translucent for overlays (nav, modals, switcher). */
 :root {
   --radius: 1rem;
-  --background: oklch(0.14 0.02 265);
-  --foreground: oklch(0.98 0.005 250);
-  --card: oklch(0.18 0.025 265);
-  --card-foreground: oklch(0.98 0.005 250);
-  --popover: oklch(0.18 0.025 265);
-  --popover-foreground: oklch(0.98 0.005 250);
-  --primary: oklch(0.76 0.18 55);
-  --primary-foreground: oklch(0.14 0.02 265);
-  --secondary: oklch(0.24 0.03 265);
-  --secondary-foreground: oklch(0.98 0.005 250);
-  --muted: oklch(0.22 0.025 265);
-  --muted-foreground: oklch(0.68 0.02 260);
-  --accent: oklch(0.68 0.2 30);
-  --accent-foreground: oklch(0.14 0.02 265);
-  --destructive: oklch(0.6 0.24 27);
-  --border: oklch(0.28 0.03 265 / 60%);
-  --input: oklch(0.28 0.03 265);
-  --ring: oklch(0.76 0.18 55);
 
-  --ember: oklch(0.76 0.18 55);
-  --ember-glow: oklch(0.82 0.2 65);
-  --plasma: oklch(0.7 0.2 30);
+  /* Warm soft-gray canvas — neu light shade + neu dark shade derive from it */
+  --neu-bg: oklch(0.95 0.006 60);
+  --neu-light: oklch(1 0 0);
+  --neu-dark: oklch(0.82 0.01 60);
 
-  --gradient-ember: linear-gradient(135deg, oklch(0.82 0.2 65), oklch(0.68 0.2 30));
-  --gradient-mesh: radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.76 0.18 55 / 0.25), transparent 60%),
-                   radial-gradient(ellipse 60% 50% at 100% 100%, oklch(0.55 0.2 300 / 0.18), transparent 60%),
-                   radial-gradient(ellipse 60% 50% at 0% 80%, oklch(0.68 0.2 30 / 0.15), transparent 60%);
-  --gradient-panel: linear-gradient(180deg, oklch(0.2 0.03 265 / 0.8), oklch(0.16 0.025 265 / 0.6));
+  --background: var(--neu-bg);
+  --foreground: oklch(0.28 0.02 60);
+  --card: var(--neu-bg);
+  --card-foreground: oklch(0.28 0.02 60);
+  --popover: oklch(0.98 0.004 60);
+  --popover-foreground: oklch(0.28 0.02 60);
 
-  --shadow-ember: 0 20px 60px -20px oklch(0.76 0.18 55 / 0.5), 0 0 40px -10px oklch(0.82 0.2 65 / 0.35);
-  --shadow-panel: 0 30px 80px -30px oklch(0 0 0 / 0.7), inset 0 1px 0 0 oklch(1 0 0 / 0.05);
-  --shadow-3d: 0 40px 80px -30px oklch(0 0 0 / 0.7), 0 20px 40px -20px oklch(0.76 0.18 55 / 0.25);
+  --primary: oklch(0.7 0.19 55);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.92 0.008 60);
+  --secondary-foreground: oklch(0.32 0.02 60);
+  --muted: oklch(0.93 0.008 60);
+  --muted-foreground: oklch(0.5 0.02 60);
+  --accent: oklch(0.72 0.18 40);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.62 0.22 27);
+  --border: oklch(0.78 0.01 60 / 60%);
+  --input: var(--neu-bg);
+  --ring: oklch(0.7 0.19 55);
+
+  --ember: oklch(0.72 0.19 55);
+  --ember-foreground: oklch(1 0 0);
+  --ember-glow: oklch(0.8 0.2 65);
+  --plasma: oklch(0.68 0.2 30);
+
+  /* Gradients */
+  --gradient-ember: linear-gradient(180deg, oklch(0.82 0.2 65), oklch(0.66 0.21 40));
+  --gradient-mesh:
+    radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.82 0.2 65 / 0.18), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 100% 100%, oklch(0.75 0.15 300 / 0.14), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 0% 80%, oklch(0.78 0.15 210 / 0.12), transparent 60%);
+  --gradient-panel: linear-gradient(180deg, oklch(1 0 0 / 0.9), oklch(0.94 0.008 60 / 0.75));
+
+  /* Neumorphic dual shadows (intensity 3/5 — balanced) */
+  --neu-out:
+    10px 10px 24px -6px oklch(0.6 0.02 60 / 0.28),
+    -10px -10px 24px -6px oklch(1 0 0 / 0.9);
+  --neu-out-sm:
+    5px 5px 12px -3px oklch(0.6 0.02 60 / 0.25),
+    -5px -5px 12px -3px oklch(1 0 0 / 0.85);
+  --neu-in:
+    inset 5px 5px 10px -2px oklch(0.6 0.02 60 / 0.28),
+    inset -5px -5px 10px -2px oklch(1 0 0 / 0.9);
+
+  /* Skeuomorphic button shadow: top highlight, bottom drop, subtle bevel */
+  --skeuo-shadow:
+    inset 0 1px 0 0 oklch(1 0 0 / 0.55),
+    inset 0 -2px 3px 0 oklch(0.3 0.05 40 / 0.25),
+    0 8px 18px -6px oklch(0.5 0.15 40 / 0.45),
+    0 2px 4px -1px oklch(0 0 0 / 0.15);
+  --skeuo-shadow-active:
+    inset 0 2px 4px 0 oklch(0.3 0.05 40 / 0.35),
+    inset 0 -1px 0 0 oklch(1 0 0 / 0.3),
+    0 1px 2px 0 oklch(0 0 0 / 0.15);
+
+  --shadow-ember:
+    0 20px 40px -18px oklch(0.72 0.19 55 / 0.55),
+    0 0 32px -12px oklch(0.82 0.2 65 / 0.35);
+  --shadow-panel: var(--neu-out);
+  --shadow-3d: var(--neu-out);
 }
 
+/* ---------- Aurora accent variant (still light neu, violet/cyan accent) ---------- */
 [data-theme="aurora"] {
-  --background: oklch(0.15 0.04 275);
-  --foreground: oklch(0.98 0.01 250);
-  --card: oklch(0.19 0.05 275);
-  --card-foreground: oklch(0.98 0.01 250);
-  --popover: oklch(0.19 0.05 275);
-  --popover-foreground: oklch(0.98 0.01 250);
-  --primary: oklch(0.7 0.2 290);
-  --primary-foreground: oklch(0.14 0.02 265);
-  --secondary: oklch(0.26 0.05 280);
-  --secondary-foreground: oklch(0.98 0.01 250);
-  --muted: oklch(0.23 0.04 275);
-  --muted-foreground: oklch(0.72 0.04 260);
-  --accent: oklch(0.78 0.15 210);
-  --accent-foreground: oklch(0.14 0.02 265);
-  --border: oklch(0.32 0.05 280 / 60%);
-  --input: oklch(0.3 0.05 280);
-  --ring: oklch(0.7 0.2 290);
+  --primary: oklch(0.62 0.22 290);
+  --primary-foreground: oklch(1 0 0);
+  --accent: oklch(0.7 0.16 210);
+  --accent-foreground: oklch(1 0 0);
+  --ring: oklch(0.62 0.22 290);
 
-  --ember: oklch(0.7 0.2 290);
-  --ember-glow: oklch(0.78 0.15 210);
-  --plasma: oklch(0.78 0.15 210);
+  --ember: oklch(0.62 0.22 290);
+  --ember-glow: oklch(0.72 0.18 250);
+  --plasma: oklch(0.7 0.16 210);
 
-  --gradient-ember: linear-gradient(135deg, oklch(0.7 0.2 290), oklch(0.78 0.15 210));
-  --gradient-mesh: radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.7 0.2 290 / 0.28), transparent 60%),
-                   radial-gradient(ellipse 60% 50% at 100% 100%, oklch(0.78 0.15 210 / 0.2), transparent 60%),
-                   radial-gradient(ellipse 60% 50% at 0% 80%, oklch(0.6 0.22 320 / 0.18), transparent 60%);
+  --gradient-ember: linear-gradient(180deg, oklch(0.72 0.2 265), oklch(0.55 0.24 295));
+  --gradient-mesh:
+    radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.7 0.2 290 / 0.2), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 100% 100%, oklch(0.78 0.15 210 / 0.16), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 0% 80%, oklch(0.6 0.22 320 / 0.14), transparent 60%);
 
-  --shadow-ember: 0 20px 60px -20px oklch(0.7 0.2 290 / 0.55), 0 0 40px -10px oklch(0.78 0.15 210 / 0.4);
-  --shadow-3d: 0 40px 80px -30px oklch(0 0 0 / 0.7), 0 20px 40px -20px oklch(0.7 0.2 290 / 0.3);
+  --skeuo-shadow:
+    inset 0 1px 0 0 oklch(1 0 0 / 0.5),
+    inset 0 -2px 3px 0 oklch(0.2 0.08 290 / 0.3),
+    0 8px 18px -6px oklch(0.5 0.2 290 / 0.5),
+    0 2px 4px -1px oklch(0 0 0 / 0.15);
+  --shadow-ember:
+    0 20px 40px -18px oklch(0.62 0.22 290 / 0.55),
+    0 0 32px -12px oklch(0.78 0.15 210 / 0.35);
 }
 
 @layer base {
@@ -118,11 +152,15 @@
   h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.02em; }
 }
 
+/* ---------- Ambient / decorative ---------- */
 @utility bg-mesh {
   background-image: var(--gradient-mesh);
 }
 @utility bg-ember {
   background-image: var(--gradient-ember);
+  color: var(--ember-foreground);
+  box-shadow: var(--skeuo-shadow);
+  border: 1px solid oklch(0.6 0.18 40 / 0.5);
 }
 @utility text-ember {
   background: var(--gradient-ember);
@@ -136,15 +174,145 @@
 @utility shadow-3d {
   box-shadow: var(--shadow-3d);
 }
+
+/* ---------- Glassmorphism (overlays: nav, modals, toolbars, switcher) ---------- */
 @utility glass {
-  background: linear-gradient(180deg, oklch(1 0 0 / 0.04), oklch(1 0 0 / 0.01));
-  backdrop-filter: blur(20px) saturate(140%);
-  border: 1px solid oklch(1 0 0 / 0.08);
+  background: linear-gradient(180deg, oklch(1 0 0 / 0.7), oklch(1 0 0 / 0.5));
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid oklch(1 0 0 / 0.6);
+  box-shadow:
+    0 8px 32px -8px oklch(0.5 0.02 60 / 0.18),
+    inset 0 1px 0 0 oklch(1 0 0 / 0.8);
 }
+@utility glass-strong {
+  background: linear-gradient(180deg, oklch(1 0 0 / 0.85), oklch(1 0 0 / 0.65));
+  backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid oklch(1 0 0 / 0.7);
+  box-shadow:
+    0 20px 60px -20px oklch(0.4 0.02 60 / 0.25),
+    inset 0 1px 0 0 oklch(1 0 0 / 0.9);
+}
+
+/* ---------- Neumorphism (cards, containers, inputs) ---------- */
+@utility neu {
+  background: var(--neu-bg);
+  border-radius: var(--radius-2xl);
+  box-shadow: var(--neu-out);
+  border: 1px solid oklch(1 0 0 / 0.6);
+}
+@utility neu-sm {
+  background: var(--neu-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neu-out-sm);
+  border: 1px solid oklch(1 0 0 / 0.5);
+}
+@utility neu-inset {
+  background: var(--neu-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--neu-in);
+  border: 1px solid oklch(0.78 0.01 60 / 0.4);
+}
+@utility neu-input {
+  background: var(--neu-bg);
+  border-radius: 999px;
+  box-shadow: var(--neu-in);
+  border: 1px solid oklch(0.78 0.01 60 / 0.4);
+  color: var(--foreground);
+  padding: 0.6rem 1rem;
+  outline: none;
+  transition: box-shadow 0.2s ease;
+}
+@utility neu-input:focus {
+  box-shadow: var(--neu-in), 0 0 0 3px oklch(0.72 0.19 55 / 0.25);
+}
+
+/* ---------- Skeuomorphism (buttons, toggles, sliders) ---------- */
+@utility skeuo {
+  position: relative;
+  background: linear-gradient(180deg, oklch(1 0 0), oklch(0.9 0.008 60));
+  color: var(--foreground);
+  border: 1px solid oklch(0.75 0.01 60 / 0.7);
+  border-radius: 999px;
+  box-shadow: var(--skeuo-shadow);
+  transition: transform 0.08s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  transform: translateZ(0);
+}
+@utility skeuo:hover { filter: brightness(1.03); }
+@utility skeuo:active {
+  box-shadow: var(--skeuo-shadow-active);
+  transform: translateY(1px);
+}
+@utility skeuo-primary {
+  position: relative;
+  background: var(--gradient-ember);
+  color: var(--ember-foreground);
+  border: 1px solid oklch(0.6 0.18 40 / 0.5);
+  border-radius: 999px;
+  box-shadow: var(--skeuo-shadow);
+  transition: transform 0.08s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  transform: translateZ(0);
+}
+@utility skeuo-primary:hover { filter: brightness(1.06); }
+@utility skeuo-primary:active {
+  box-shadow: var(--skeuo-shadow-active);
+  transform: translateY(1px);
+}
+
+/* Skeuo toggle track + knob */
+@utility skeuo-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 3.25rem;
+  height: 1.75rem;
+  padding: 0.15rem;
+  border-radius: 999px;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-in);
+  border: 1px solid oklch(0.78 0.01 60 / 0.4);
+  cursor: pointer;
+}
+@utility skeuo-toggle-knob {
+  display: block;
+  width: 1.45rem;
+  height: 1.45rem;
+  border-radius: 999px;
+  background: linear-gradient(180deg, oklch(1 0 0), oklch(0.88 0.01 60));
+  box-shadow:
+    inset 0 1px 0 0 oklch(1 0 0 / 0.9),
+    inset 0 -2px 3px 0 oklch(0.4 0.02 60 / 0.2),
+    0 2px 4px 0 oklch(0 0 0 / 0.25);
+  transition: transform 0.25s cubic-bezier(.16,1,.3,1), background 0.2s;
+}
+
+/* Skeuo slider */
+@utility skeuo-slider {
+  appearance: none;
+  width: 100%;
+  height: 0.75rem;
+  border-radius: 999px;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-in);
+  outline: none;
+}
+@utility skeuo-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 999px;
+  background: var(--gradient-ember);
+  border: 1px solid oklch(0.6 0.18 40 / 0.6);
+  box-shadow:
+    inset 0 1px 0 0 oklch(1 0 0 / 0.6),
+    0 3px 8px -2px oklch(0.5 0.15 40 / 0.5);
+  cursor: pointer;
+}
+
+/* ---------- Backgrounds ---------- */
 @utility grid-bg {
   background-image:
-    linear-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+    linear-gradient(oklch(0.5 0.02 60 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.5 0.02 60 / 0.06) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 @utility noise {
@@ -153,11 +321,11 @@
     content: "";
     position: absolute; inset: 0; pointer-events: none;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
-    opacity: 0.06; mix-blend-mode: overlay;
+    opacity: 0.04; mix-blend-mode: multiply;
   }
 }
 
-
+/* ---------- Animations ---------- */
 @keyframes float-slow {
   0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
   50% { transform: translate3d(0, -20px, 0) rotate(2deg); }
