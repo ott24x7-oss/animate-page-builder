@@ -149,10 +149,10 @@ export function BrowserFrame({ src, alt, label }: { src: string; alt: string; la
 export function PhoneFrame({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="relative [transform-style:preserve-3d]">
-      {/* Contact shadow */}
+      {/* Contact shadow — lighter blur on mobile */}
       <div
         aria-hidden
-        className="absolute -bottom-4 left-1/2 h-6 w-[85%] -translate-x-1/2 rounded-[50%] bg-black/70 blur-2xl opacity-70"
+        className="absolute -bottom-4 left-1/2 h-6 w-[85%] -translate-x-1/2 rounded-[50%] bg-black/70 blur-md sm:blur-2xl opacity-70"
       />
       {/* Side buttons */}
       <span className="absolute -left-[2px] top-[22%] h-6 w-[2px] rounded-l bg-neutral-800" />
@@ -165,24 +165,24 @@ export function PhoneFrame({ src, alt }: { src: string; alt: string }) {
           background:
             "linear-gradient(150deg,#3a3a42 0%,#1a1a1e 40%,#050506 100%)",
           boxShadow:
-            "0 40px 60px -25px rgba(0,0,0,0.8), 0 12px 24px -10px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(255,255,255,0.04)",
+            "0 24px 40px -25px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.10), inset 0 -1px 0 rgba(255,255,255,0.04)",
         }}
       >
         <div className="relative rounded-[1.45rem] sm:rounded-[1.95rem] bg-black p-[3px] ring-1 ring-white/5">
           {/* Dynamic island */}
-          <div className="absolute left-1/2 top-1.5 z-20 h-3.5 w-16 -translate-x-1/2 rounded-full bg-black ring-1 ring-white/10 shadow-[inset_0_0_6px_rgba(255,255,255,0.05)]">
+          <div className="absolute left-1/2 top-1.5 z-20 h-3.5 w-16 -translate-x-1/2 rounded-full bg-black ring-1 ring-white/10">
             <span className="absolute right-2 top-1/2 h-1 w-1 -translate-y-1/2 rounded-full bg-neutral-800 ring-1 ring-white/10" />
           </div>
           <div className="relative rounded-[1.25rem] sm:rounded-[1.7rem] overflow-hidden bg-black">
-            <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" />
-            {/* Screen gloss */}
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(125deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0)_28%,rgba(255,255,255,0)_72%,rgba(255,255,255,0.06)_100%)]" />
-            {/* Edge highlight */}
+            <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" decoding="async" />
+            {/* Screen gloss — desktop only */}
+            <div className="pointer-events-none absolute inset-0 hidden sm:block bg-[linear-gradient(125deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0)_28%,rgba(255,255,255,0)_72%,rgba(255,255,255,0.06)_100%)]" />
+            {/* Edge highlight (cheap ring — keep on mobile) */}
             <div className="pointer-events-none absolute inset-0 rounded-[1.25rem] sm:rounded-[1.7rem] ring-1 ring-inset ring-white/10" />
-            <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_50px_rgba(0,0,0,0.55)]" />
+            <div className="pointer-events-none absolute inset-0 hidden sm:block shadow-[inset_0_0_50px_rgba(0,0,0,0.55)]" />
           </div>
         </div>
       </div>
-    </div>
+
   );
 }
