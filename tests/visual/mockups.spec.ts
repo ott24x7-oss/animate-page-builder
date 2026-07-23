@@ -18,23 +18,26 @@ const KILL_ANIMATIONS = `
 
 async function prepare(page: Page, path: string) {
   page.setDefaultTimeout(60_000);
-  await page.goto(path, { waitUntil: "load", timeout: 60_000 });
+  await page.goto(path, { waitUntil: "domcontentloaded", timeout: 60_000 });
   await page.addStyleTag({ content: KILL_ANIMATIONS });
-  // Wait for every <img> to finish decoding (skip HMR / websocket idle).
-  await page.evaluate(
-    () =>
-      Promise.all(
-        Array.from(document.images).map((img) =>
-          img.complete && img.naturalWidth > 0
-            ? Promise.resolve()
-            : new Promise<void>((r) => {
+  // Best-effort image wait, capped at 15s so a slow CDN doesn't hang the test.
+  await Promise.race([
+    page.evaluate(
+      () =>
+        Promise.all(
+          Array.from(document.images).map(
+            (img) =>
+              new Promise<void>((r) => {
+                if (img.complete && img.naturalWidth > 0) return r();
                 img.addEventListener("load", () => r(), { once: true });
                 img.addEventListener("error", () => r(), { once: true });
               }),
+          ),
         ),
-      ),
-  );
-  await page.waitForTimeout(300);
+    ),
+    page.waitForTimeout(15_000),
+  ]);
+  await page.waitForTimeout(400);
 }
 
 async function snap(el: Locator, name: string) {
