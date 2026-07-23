@@ -22,6 +22,9 @@ export default defineConfig({
         ...devices["Desktop Chrome"],
         viewport: { width: 1280, height: 1800 },
         deviceScaleFactor: 1,
+        launchOptions: {
+          executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || "/bin/chromium",
+        },
       },
     },
   ],
