@@ -14,7 +14,6 @@ export default defineConfig({
   use: {
     baseURL: "http://localhost:8080",
     viewport: { width: 1280, height: 1800 },
-    deviceScaleTag: undefined as never, // placeholder to satisfy TS; actual dsr set below
   },
   projects: [
     {
