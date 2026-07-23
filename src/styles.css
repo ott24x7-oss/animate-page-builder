@@ -237,11 +237,11 @@
   box-shadow: var(--skeuo-shadow);
   transition: transform 0.08s ease, box-shadow 0.15s ease, filter 0.15s ease;
   transform: translateZ(0);
-}
-@utility skeuo:hover { filter: brightness(1.03); }
-@utility skeuo:active {
-  box-shadow: var(--skeuo-shadow-active);
-  transform: translateY(1px);
+  &:hover { filter: brightness(1.03); }
+  &:active {
+    box-shadow: var(--skeuo-shadow-active);
+    transform: translateY(1px);
+  }
 }
 @utility skeuo-primary {
   position: relative;
@@ -252,12 +252,13 @@
   box-shadow: var(--skeuo-shadow);
   transition: transform 0.08s ease, box-shadow 0.15s ease, filter 0.15s ease;
   transform: translateZ(0);
+  &:hover { filter: brightness(1.06); }
+  &:active {
+    box-shadow: var(--skeuo-shadow-active);
+    transform: translateY(1px);
+  }
 }
-@utility skeuo-primary:hover { filter: brightness(1.06); }
-@utility skeuo-primary:active {
-  box-shadow: var(--skeuo-shadow-active);
-  transform: translateY(1px);
-}
+
 
 /* Skeuo toggle track + knob */
 @utility skeuo-toggle {
