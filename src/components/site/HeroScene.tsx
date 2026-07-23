@@ -26,7 +26,7 @@ export function HeroScene() {
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           className="absolute left-[2%] top-[14%] w-[72%] [transform-style:preserve-3d]"
         >
-          <LaptopFrame src={website.url} alt="OTT24x7 website" />
+          <LaptopFrame src={website.url} alt="OTT24x7 website" fit="cover" />
         </motion.div>
 
         {/* Admin browser floating */}
@@ -36,7 +36,7 @@ export function HeroScene() {
           className="absolute right-[0%] top-[2%] w-[44%] [transform-style:preserve-3d]"
           style={{ transform: "translateZ(90px) rotateY(-8deg) rotateZ(2deg)" }}
         >
-          <BrowserFrame src={adminTheme.url} alt="Admin theme panel" label="admin.ott24x7.com" />
+          <BrowserFrame src={adminTheme.url} alt="Admin theme panel" label="admin.ott24x7.com" fit="cover" />
         </motion.div>
 
         {/* Phone / mini app */}
@@ -46,7 +46,7 @@ export function HeroScene() {
           className="absolute right-[4%] bottom-[-4%] w-[30%] [transform-style:preserve-3d]"
           style={{ transform: "translateZ(160px) rotateY(-10deg) rotateZ(-3deg)" }}
         >
-          <PhoneFrame src={botMiniApp.url} alt="Telegram bot and mini app" />
+          <PhoneFrame src={botMiniApp.url} alt="Telegram bot and mini app" fit="cover" />
         </motion.div>
 
         <FloatBadge className="left-[0%] top-[4%]" delay={0}>⚡ Auto-delivery</FloatBadge>
@@ -71,7 +71,44 @@ function FloatBadge({ children, className, delay }: { children: React.ReactNode;
   );
 }
 
-export function LaptopFrame({ src, alt }: { src: string; alt: string }) {
+type FitMode = "contain" | "cover";
+
+/** Fitted screen area: fixes an aspect ratio and letterboxes (contain) or crops (cover). */
+function ScreenArea({
+  src,
+  alt,
+  fit = "contain",
+  ratio,
+  className = "",
+  children,
+}: {
+  src: string;
+  alt: string;
+  fit?: FitMode;
+  /** width / height, e.g. 16/10 for laptop, 9/19.5 for phone */
+  ratio: number;
+  className?: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <div
+      className={`relative w-full overflow-hidden bg-black ${className}`}
+      style={{ aspectRatio: String(ratio) }}
+    >
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 h-full w-full"
+        style={{ objectFit: fit, objectPosition: "top center" }}
+      />
+      {children}
+    </div>
+  );
+}
+
+export function LaptopFrame({ src, alt, fit = "contain" }: { src: string; alt: string; fit?: FitMode }) {
   return (
     <div className="relative [transform-style:preserve-3d]">
       {/* Ambient contact shadow — heavier on desktop only */}
@@ -89,17 +126,21 @@ export function LaptopFrame({ src, alt }: { src: string; alt: string }) {
             "0 20px 40px -20px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08)",
         }}
       >
-        <div className="relative rounded-[8px] sm:rounded-[12px] overflow-hidden bg-black ring-1 ring-white/5">
+        <ScreenArea
+          src={src}
+          alt={alt}
+          fit={fit}
+          ratio={16 / 10}
+          className="rounded-[8px] sm:rounded-[12px] ring-1 ring-white/5"
+        >
           {/* Camera + sensor */}
           <div className="absolute left-1/2 top-0 z-20 flex h-[6px] w-16 -translate-x-1/2 items-center justify-center rounded-b-[6px] bg-black">
             <span className="h-[3px] w-[3px] rounded-full bg-neutral-700 ring-1 ring-white/10" />
           </div>
-          <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" decoding="async" />
-          {/* Screen gloss — desktop only (expensive gradient overlay) */}
+          {/* Screen gloss — desktop only */}
           <div className="pointer-events-none absolute inset-0 hidden sm:block bg-[linear-gradient(115deg,rgba(255,255,255,0.10)_0%,rgba(255,255,255,0)_28%,rgba(255,255,255,0)_72%,rgba(255,255,255,0.04)_100%)]" />
-          {/* Inner vignette — desktop only */}
           <div className="pointer-events-none absolute inset-0 hidden sm:block shadow-[inset_0_0_60px_rgba(0,0,0,0.55)]" />
-        </div>
+        </ScreenArea>
       </div>
       {/* Hinge / deck */}
       <div
@@ -117,7 +158,8 @@ export function LaptopFrame({ src, alt }: { src: string; alt: string }) {
   );
 }
 
-export function BrowserFrame({ src, alt, label }: { src: string; alt: string; label?: string }) {
+
+export function BrowserFrame({ src, alt, label, fit = "contain", ratio = 16 / 10 }: { src: string; alt: string; label?: string; fit?: FitMode; ratio?: number }) {
   return (
     <div
       className="relative rounded-lg sm:rounded-xl overflow-hidden border border-white/10 ring-1 ring-black/50 sm:backdrop-blur-md"
@@ -137,16 +179,15 @@ export function BrowserFrame({ src, alt, label }: { src: string; alt: string; la
           {label ?? "preview"}
         </div>
       </div>
-      <div className="relative">
-        <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" decoding="async" />
+      <ScreenArea src={src} alt={alt} fit={fit} ratio={ratio}>
         <div className="pointer-events-none absolute inset-0 hidden sm:block bg-[linear-gradient(120deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_30%,rgba(255,255,255,0)_70%,rgba(255,255,255,0.03)_100%)]" />
         <div className="pointer-events-none absolute inset-0 hidden sm:block shadow-[inset_0_0_40px_rgba(0,0,0,0.45)]" />
-      </div>
+      </ScreenArea>
     </div>
   );
 }
 
-export function PhoneFrame({ src, alt }: { src: string; alt: string }) {
+export function PhoneFrame({ src, alt, fit = "contain" }: { src: string; alt: string; fit?: FitMode }) {
   return (
     <div className="relative [transform-style:preserve-3d]">
       {/* Contact shadow — lighter blur on mobile */}
@@ -173,17 +214,19 @@ export function PhoneFrame({ src, alt }: { src: string; alt: string }) {
           <div className="absolute left-1/2 top-1.5 z-20 h-3.5 w-16 -translate-x-1/2 rounded-full bg-black ring-1 ring-white/10">
             <span className="absolute right-2 top-1/2 h-1 w-1 -translate-y-1/2 rounded-full bg-neutral-800 ring-1 ring-white/10" />
           </div>
-          <div className="relative rounded-[1.25rem] sm:rounded-[1.7rem] overflow-hidden bg-black">
-            <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" decoding="async" />
-            {/* Screen gloss — desktop only */}
+          <ScreenArea
+            src={src}
+            alt={alt}
+            fit={fit}
+            ratio={9 / 19.5}
+            className="rounded-[1.25rem] sm:rounded-[1.7rem]"
+          >
             <div className="pointer-events-none absolute inset-0 hidden sm:block bg-[linear-gradient(125deg,rgba(255,255,255,0.14)_0%,rgba(255,255,255,0)_28%,rgba(255,255,255,0)_72%,rgba(255,255,255,0.06)_100%)]" />
-            {/* Edge highlight (cheap ring — keep on mobile) */}
             <div className="pointer-events-none absolute inset-0 rounded-[1.25rem] sm:rounded-[1.7rem] ring-1 ring-inset ring-white/10" />
             <div className="pointer-events-none absolute inset-0 hidden sm:block shadow-[inset_0_0_50px_rgba(0,0,0,0.55)]" />
-          </div>
+          </ScreenArea>
         </div>
       </div>
     </div>
   );
-
 }
