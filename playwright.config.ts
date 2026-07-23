@@ -19,11 +19,12 @@ export default defineConfig({
     {
       name: "chromium",
       use: {
-        ...devices["Desktop Chrome"],
+        browserName: "chromium",
         viewport: { width: 1280, height: 1800 },
         deviceScaleFactor: 1,
         launchOptions: {
           executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH || "/bin/chromium",
+          args: ["--no-sandbox"],
         },
       },
     },
