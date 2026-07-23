@@ -1,10 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Nav } from "@/components/site/Nav";
-import { HeroScene } from "@/components/site/HeroScene";
+import { HeroScene, BrowserFrame, PhoneFrame } from "@/components/site/HeroScene";
 import { Reveal } from "@/components/site/Reveal";
 import { TiltCard } from "@/components/site/TiltCard";
 import { useState } from "react";
+import botMiniApp from "@/assets/bot-miniapp.png.asset.json";
+import botAdmin from "@/assets/bot-admin.png.asset.json";
+import botSales from "@/assets/bot-sales.png.asset.json";
+import website from "@/assets/website-hero.png.asset.json";
+import adminTheme from "@/assets/admin-theme.png.asset.json";
+import adminBlog from "@/assets/admin-blog.png.asset.json";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
