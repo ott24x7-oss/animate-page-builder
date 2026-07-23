@@ -21,15 +21,15 @@ const KILL_ANIMATIONS = `
   }
 `;
 
-async function prepare(page: Page, path: string, anchorTestId?: string) {
+async function prepare(page: Page, path: string) {
   page.setDefaultTimeout(60_000);
   await page.goto(path, { waitUntil: "load", timeout: 60_000 });
-  if (anchorTestId) {
-    await page.getByTestId(anchorTestId).first().waitFor({ state: "attached", timeout: 30_000 });
-  }
-  // Let hydration settle before evaluating in the page context.
-  await page.waitForTimeout(1200);
+  await page.waitForTimeout(1500);
   await page.addStyleTag({ content: KILL_ANIMATIONS });
+  await page.evaluate(() => {
+    // Stop Framer Motion's rAF loop so inline transforms stop mutating.
+    window.requestAnimationFrame = () => 0;
+  });
   await page.waitForLoadState("networkidle", { timeout: 30_000 }).catch(() => {});
   await page.waitForTimeout(500);
 }
