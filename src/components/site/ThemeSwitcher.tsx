@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 
-type Theme = "ember" | "aurora";
+type Theme = "ember" | "aurora" | "dark";
 
 const THEMES: { id: Theme; label: string; swatches: string[] }[] = [
   { id: "ember", label: "Ember", swatches: ["#f59e0b", "#ef4444"] },
   { id: "aurora", label: "Midnight Aurora", swatches: ["#7c5cff", "#22d3ee"] },
+  { id: "dark", label: "Dark", swatches: ["#1e1b2e", "#7c5cff"] },
 ];
 
 const STORAGE_KEY = "as24-theme";
