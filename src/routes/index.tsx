@@ -64,15 +64,15 @@ function BackgroundFX() {
 
 function Hero() {
   return (
-    <section className="relative pt-36 pb-24 sm:pt-44 sm:pb-32">
+    <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-8 items-center">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-8 items-center">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-xs font-medium"
+              className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-[10px] sm:text-xs font-medium"
             >
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ember opacity-75" />
@@ -85,11 +85,12 @@ function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="mt-6 font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[0.95] tracking-tight"
+              className="mt-5 font-display text-4xl sm:text-6xl lg:text-7xl font-bold leading-[0.95] tracking-tight"
             >
-              Sell digital<br />products{" "}
+              Sell digital products{" "}
               <span className="text-ember animate-gradient bg-clip-text">automatically.</span>
             </motion.h1>
+
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -199,7 +200,7 @@ function HowItWorks() {
     { n: "03", t: "Order is delivered", d: "Automatic stock is delivered instantly; manual orders stay under your control." },
   ];
   return (
-    <section id="how" className="relative py-28">
+    <section id="how" className="relative py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader eyebrow="Simple workflow" title={<>How the system <span className="text-ember">works</span></>} sub="A complete buying journey with fewer manual steps." />
         <div className="mt-16 grid gap-6 md:grid-cols-3">
@@ -229,7 +230,7 @@ function Channels() {
     { t: "Website", d: "Search, guest checkout and email delivery.", icon: "◉" },
   ];
   return (
-    <section className="relative py-28">
+    <section className="relative py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader eyebrow="A real connected storefront" title={<>One brand. <span className="text-ember italic">Three selling channels.</span></>} sub="Your customers can browse and buy through the Telegram Bot, Mini App or website. Every channel uses the same catalog, stock and order data." />
 
@@ -275,7 +276,7 @@ function Features() {
     { i: "!", t: "Instant Owner Alerts", d: "Receive WhatsApp and Telegram notifications for purchases on the Bot or website." },
   ];
   return (
-    <section id="features" className="relative py-28">
+    <section id="features" className="relative py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader eyebrow="Core capabilities" title={<>Everything required to run a <span className="text-ember">digital store</span></>} sub="Powerful automation presented in a simple admin dashboard." />
 
@@ -304,7 +305,7 @@ function Dashboard() {
   const tabs = ["Products", "Payments", "Stock", "APIs", "Marketing", "Reports"];
   const [active, setActive] = useState(0);
   return (
-    <section className="relative py-28">
+    <section className="relative py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader eyebrow="Built for daily operations" title={<>Manage the entire business from <span className="text-ember">one dashboard.</span></>} sub="Add products, upload stock, review payments, schedule offers and monitor orders without switching between tools." />
 
@@ -414,7 +415,7 @@ function Pricing() {
     },
   ];
   return (
-    <section id="pricing" className="relative py-28">
+    <section id="pricing" className="relative py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader eyebrow="Clear pricing" title={<>Choose the plan that fits your <span className="text-ember">business</span></>} sub="Both plans include a website, Telegram Bot and Mini App." />
 
@@ -493,7 +494,7 @@ function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="relative py-28">
+    <section className="relative py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         <SectionHeader eyebrow="FAQs" title={<>Quick <span className="text-ember">answers</span></>} sub="Important information before you start." />
 
@@ -529,7 +530,7 @@ function FAQ() {
 
 function CTA() {
   return (
-    <section className="relative py-28">
+    <section className="relative py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="relative overflow-hidden rounded-[2rem] bg-ember p-10 sm:p-16 shadow-ember text-primary-foreground">
@@ -602,7 +603,7 @@ function Showcase() {
     { src: botAdmin.url, label: "Admin panel in Telegram", tag: "Operator view" },
   ];
   return (
-    <section className="relative py-28">
+    <section className="relative py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Real mockups"
@@ -636,7 +637,7 @@ function Showcase() {
 
 function AdminShowcase() {
   return (
-    <section className="relative py-28">
+    <section className="relative py-16 sm:py-24 lg:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Website + Admin"
