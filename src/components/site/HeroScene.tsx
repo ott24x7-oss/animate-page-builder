@@ -120,28 +120,27 @@ export function LaptopFrame({ src, alt }: { src: string; alt: string }) {
 export function BrowserFrame({ src, alt, label }: { src: string; alt: string; label?: string }) {
   return (
     <div
-      className="relative rounded-lg sm:rounded-xl overflow-hidden border border-white/10 ring-1 ring-black/50"
+      className="relative rounded-lg sm:rounded-xl overflow-hidden border border-white/10 ring-1 ring-black/50 sm:backdrop-blur-md"
       style={{
-        background: "linear-gradient(180deg,rgba(20,20,24,0.9),rgba(8,8,10,0.9))",
-        backdropFilter: "blur(14px)",
+        background: "linear-gradient(180deg,rgba(20,20,24,0.95),rgba(8,8,10,0.95))",
         boxShadow:
-          "0 30px 60px -25px rgba(0,0,0,0.75), 0 10px 24px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.06)",
+          "0 20px 40px -25px rgba(0,0,0,0.75), inset 0 1px 0 rgba(255,255,255,0.06)",
       }}
     >
       <div className="flex items-center gap-2 bg-black/60 px-2 py-1.5 sm:px-3 sm:py-2 border-b border-white/5">
         <div className="flex gap-1">
-          <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-red-400/80 shadow-[0_0_4px_rgba(248,113,113,0.5)]" />
-          <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-yellow-400/80 shadow-[0_0_4px_rgba(250,204,21,0.5)]" />
-          <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-green-400/80 shadow-[0_0_4px_rgba(74,222,128,0.5)]" />
+          <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-red-400/80" />
+          <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-yellow-400/80" />
+          <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-green-400/80" />
         </div>
         <div className="ml-1 sm:ml-2 flex-1 truncate rounded-md bg-white/[0.06] ring-1 ring-white/5 px-1.5 py-0.5 text-[8px] sm:text-[9px] font-mono text-muted-foreground">
           {label ?? "preview"}
         </div>
       </div>
       <div className="relative">
-        <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" />
-        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(120deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_30%,rgba(255,255,255,0)_70%,rgba(255,255,255,0.03)_100%)]" />
-        <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_40px_rgba(0,0,0,0.45)]" />
+        <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" decoding="async" />
+        <div className="pointer-events-none absolute inset-0 hidden sm:block bg-[linear-gradient(120deg,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0)_30%,rgba(255,255,255,0)_70%,rgba(255,255,255,0.03)_100%)]" />
+        <div className="pointer-events-none absolute inset-0 hidden sm:block shadow-[inset_0_0_40px_rgba(0,0,0,0.45)]" />
       </div>
     </div>
   );
