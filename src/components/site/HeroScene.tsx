@@ -26,7 +26,7 @@ export function HeroScene() {
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           className="absolute left-[2%] top-[14%] w-[72%] [transform-style:preserve-3d]"
         >
-          <LaptopFrame src={website.url} alt="OTT24x7 website" />
+          <LaptopFrame src={website.url} alt="OTT24x7 website" fit="cover" />
         </motion.div>
 
         {/* Admin browser floating */}
