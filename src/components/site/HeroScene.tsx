@@ -74,10 +74,10 @@ function FloatBadge({ children, className, delay }: { children: React.ReactNode;
 export function LaptopFrame({ src, alt }: { src: string; alt: string }) {
   return (
     <div className="relative [transform-style:preserve-3d]">
-      {/* Ambient contact shadow */}
+      {/* Ambient contact shadow — heavier on desktop only */}
       <div
         aria-hidden
-        className="absolute -bottom-6 left-1/2 h-8 w-[92%] -translate-x-1/2 rounded-[50%] bg-black/60 blur-2xl opacity-70"
+        className="absolute -bottom-6 left-1/2 h-8 w-[92%] -translate-x-1/2 rounded-[50%] bg-black/60 blur-md sm:blur-2xl opacity-70"
       />
       {/* Lid / bezel */}
       <div
@@ -86,7 +86,7 @@ export function LaptopFrame({ src, alt }: { src: string; alt: string }) {
           background:
             "linear-gradient(160deg, #2a2a30 0%, #16161a 45%, #0a0a0d 100%)",
           boxShadow:
-            "0 30px 60px -20px rgba(0,0,0,0.7), 0 12px 24px -12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.08)",
+            "0 20px 40px -20px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08)",
         }}
       >
         <div className="relative rounded-[8px] sm:rounded-[12px] overflow-hidden bg-black ring-1 ring-white/5">
@@ -94,11 +94,11 @@ export function LaptopFrame({ src, alt }: { src: string; alt: string }) {
           <div className="absolute left-1/2 top-0 z-20 flex h-[6px] w-16 -translate-x-1/2 items-center justify-center rounded-b-[6px] bg-black">
             <span className="h-[3px] w-[3px] rounded-full bg-neutral-700 ring-1 ring-white/10" />
           </div>
-          <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" />
-          {/* Screen gloss */}
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,rgba(255,255,255,0.10)_0%,rgba(255,255,255,0)_28%,rgba(255,255,255,0)_72%,rgba(255,255,255,0.04)_100%)]" />
-          {/* Inner vignette */}
-          <div className="pointer-events-none absolute inset-0 shadow-[inset_0_0_60px_rgba(0,0,0,0.55)]" />
+          <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" decoding="async" />
+          {/* Screen gloss — desktop only (expensive gradient overlay) */}
+          <div className="pointer-events-none absolute inset-0 hidden sm:block bg-[linear-gradient(115deg,rgba(255,255,255,0.10)_0%,rgba(255,255,255,0)_28%,rgba(255,255,255,0)_72%,rgba(255,255,255,0.04)_100%)]" />
+          {/* Inner vignette — desktop only */}
+          <div className="pointer-events-none absolute inset-0 hidden sm:block shadow-[inset_0_0_60px_rgba(0,0,0,0.55)]" />
         </div>
       </div>
       {/* Hinge / deck */}
@@ -108,7 +108,7 @@ export function LaptopFrame({ src, alt }: { src: string; alt: string }) {
           background:
             "linear-gradient(180deg,#1e1e22 0%,#101013 55%,#050506 100%)",
           boxShadow:
-            "0 18px 30px -10px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06)",
+            "0 12px 20px -10px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.06)",
         }}
       >
         <div className="mx-auto mt-[2px] h-[2px] w-[28%] rounded-full bg-black/70 ring-1 ring-white/5" />
