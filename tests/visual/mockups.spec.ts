@@ -17,24 +17,24 @@ const KILL_ANIMATIONS = `
 `;
 
 async function prepare(page: Page, path: string) {
-  await page.goto(path, { waitUntil: "networkidle" });
+  page.setDefaultTimeout(60_000);
+  await page.goto(path, { waitUntil: "load", timeout: 60_000 });
   await page.addStyleTag({ content: KILL_ANIMATIONS });
-  // Wait for every <img> to finish decoding.
-  await page.evaluate(async () => {
-    const imgs = Array.from(document.images);
-    await Promise.all(
-      imgs.map((img) =>
-        img.complete && img.naturalWidth > 0
-          ? Promise.resolve()
-          : new Promise<void>((r) => {
-              img.addEventListener("load", () => r(), { once: true });
-              img.addEventListener("error", () => r(), { once: true });
-            }),
+  // Wait for every <img> to finish decoding (skip HMR / websocket idle).
+  await page.evaluate(
+    () =>
+      Promise.all(
+        Array.from(document.images).map((img) =>
+          img.complete && img.naturalWidth > 0
+            ? Promise.resolve()
+            : new Promise<void>((r) => {
+                img.addEventListener("load", () => r(), { once: true });
+                img.addEventListener("error", () => r(), { once: true });
+              }),
+        ),
       ),
-    );
-    // Two rAFs so layout settles after animation neutralization.
-    await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(() => r(null))));
-  });
+  );
+  await page.waitForTimeout(300);
 }
 
 async function snap(el: Locator, name: string) {

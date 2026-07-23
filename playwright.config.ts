@@ -3,6 +3,7 @@ import { defineConfig, devices } from "@playwright/test";
 export default defineConfig({
   testDir: "./tests/visual",
   fullyParallel: true,
+  timeout: 120_000,
   reporter: [["list"]],
   expect: {
     toHaveScreenshot: {
