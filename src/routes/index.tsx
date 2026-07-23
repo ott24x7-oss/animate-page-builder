@@ -594,3 +594,101 @@ function Footer() {
     </footer>
   );
 }
+
+function Showcase() {
+  const shots = [
+    { src: botMiniApp.url, label: "Telegram Bot + Mini App", tag: "Customer view" },
+    { src: botSales.url, label: "Sales report inside chat", tag: "Owner view" },
+    { src: botAdmin.url, label: "Admin panel in Telegram", tag: "Operator view" },
+  ];
+  return (
+    <section className="relative py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Real mockups"
+          title={<>Everything runs inside <span className="text-ember">Telegram.</span></>}
+          sub="Actual screens from a live store — the customer chat, the admin panel and the daily sales report."
+        />
+        <div className="mt-14 grid gap-6 md:grid-cols-3">
+          {shots.map((s, i) => (
+            <Reveal key={s.label} delay={i * 0.1}>
+              <TiltCard className="h-full">
+                <div className="glass rounded-3xl p-4 shadow-3d h-full">
+                  <div className="rounded-2xl overflow-hidden bg-black/40 border border-white/5">
+                    <img src={s.src} alt={s.label} className="block w-full h-auto" loading="lazy" />
+                  </div>
+                  <div className="flex items-center justify-between px-2 pt-4">
+                    <div>
+                      <div className="font-mono text-[10px] uppercase tracking-wider text-ember">{s.tag}</div>
+                      <div className="mt-1 font-display font-semibold">{s.label}</div>
+                    </div>
+                    <span className="h-8 w-8 rounded-full bg-ember/15 border border-primary/30 flex items-center justify-center text-ember text-sm">↗</span>
+                  </div>
+                </div>
+              </TiltCard>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function AdminShowcase() {
+  return (
+    <section className="relative py-28">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <SectionHeader
+          eyebrow="Website + Admin"
+          title={<>A storefront your customers <span className="text-ember">actually enjoy.</span></>}
+          sub="A branded public website, plus a full admin panel to control themes, content, SEO and payments."
+        />
+        <div className="mt-14 grid gap-6 lg:grid-cols-2 items-start">
+          <Reveal>
+            <TiltCard>
+              <BrowserFrame src={website.url} alt="OTT24x7 website hero" label="ott24x7.com" />
+            </TiltCard>
+            <div className="mt-4 px-2">
+              <div className="font-mono text-[10px] uppercase tracking-wider text-ember">Public website</div>
+              <div className="mt-1 font-display text-lg font-semibold">Search, browse and buy — no Telegram required.</div>
+            </div>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <TiltCard>
+              <BrowserFrame src={adminTheme.url} alt="Admin theme picker" label="admin · App Theme" />
+            </TiltCard>
+            <div className="mt-4 px-2">
+              <div className="font-mono text-[10px] uppercase tracking-wider text-ember">Admin panel</div>
+              <div className="mt-1 font-display text-lg font-semibold">Themes, branding and content in one place.</div>
+            </div>
+          </Reveal>
+          <Reveal delay={0.2} className="lg:col-span-2">
+            <TiltCard>
+              <BrowserFrame src={adminBlog.url} alt="Admin blog editor" label="admin · Blog & SEO" />
+            </TiltCard>
+            <div className="mt-4 px-2">
+              <div className="font-mono text-[10px] uppercase tracking-wider text-ember">Content + SEO</div>
+              <div className="mt-1 font-display text-lg font-semibold">Publish articles, manage redirects and SEO from the dashboard.</div>
+            </div>
+          </Reveal>
+        </div>
+
+        <Reveal className="mt-16">
+          <div className="grid gap-6 md:grid-cols-[minmax(0,1fr)_auto] items-center glass rounded-3xl p-6 sm:p-8 shadow-3d">
+            <div>
+              <div className="font-mono text-[10px] uppercase tracking-wider text-ember">Mini App preview</div>
+              <h3 className="mt-2 font-display text-2xl font-semibold">The same catalog, inside Telegram.</h3>
+              <p className="mt-2 text-muted-foreground max-w-xl">
+                Customers open your store from the bot menu and browse products with instant search, wallet balance and one-tap checkout.
+              </p>
+            </div>
+            <div className="w-64 mx-auto md:mx-0">
+              <PhoneFrame src={botMiniApp.url} alt="Telegram Mini App storefront" />
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
