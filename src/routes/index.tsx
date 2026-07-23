@@ -615,7 +615,7 @@ function Showcase() {
             <Reveal key={s.label} delay={i * 0.1}>
               <TiltCard className="h-full">
                 <div className="glass rounded-3xl p-4 shadow-3d h-full">
-                  <div className="rounded-2xl overflow-hidden bg-black/40 border border-white/5">
+                  <div data-testid={`mockup-showcase-${i}`} className="rounded-2xl overflow-hidden bg-black/40 border border-white/5">
                     <img src={s.src} alt={s.label} className="block w-full h-auto" loading="lazy" />
                   </div>
                   <div className="flex items-center justify-between px-2 pt-4">
@@ -646,27 +646,33 @@ function AdminShowcase() {
         />
         <div className="mt-14 grid gap-6 lg:grid-cols-2 items-start">
           <Reveal>
-            <TiltCard>
-              <BrowserFrame src={website.url} alt="OTT24x7 website hero" label="ott24x7.com" />
-            </TiltCard>
+            <div data-testid="mockup-admin-website">
+              <TiltCard>
+                <BrowserFrame src={website.url} alt="OTT24x7 website hero" label="ott24x7.com" />
+              </TiltCard>
+            </div>
             <div className="mt-4 px-2">
               <div className="font-mono text-[10px] uppercase tracking-wider text-ember">Public website</div>
               <div className="mt-1 font-display text-lg font-semibold">Search, browse and buy — no Telegram required.</div>
             </div>
           </Reveal>
           <Reveal delay={0.15}>
-            <TiltCard>
-              <BrowserFrame src={adminTheme.url} alt="Admin theme picker" label="admin · App Theme" />
-            </TiltCard>
+            <div data-testid="mockup-admin-theme">
+              <TiltCard>
+                <BrowserFrame src={adminTheme.url} alt="Admin theme picker" label="admin · App Theme" />
+              </TiltCard>
+            </div>
             <div className="mt-4 px-2">
               <div className="font-mono text-[10px] uppercase tracking-wider text-ember">Admin panel</div>
               <div className="mt-1 font-display text-lg font-semibold">Themes, branding and content in one place.</div>
             </div>
           </Reveal>
           <Reveal delay={0.2} className="lg:col-span-2">
-            <TiltCard>
-              <BrowserFrame src={adminBlog.url} alt="Admin blog editor" label="admin · Blog & SEO" />
-            </TiltCard>
+            <div data-testid="mockup-admin-blog">
+              <TiltCard>
+                <BrowserFrame src={adminBlog.url} alt="Admin blog editor" label="admin · Blog & SEO" />
+              </TiltCard>
+            </div>
             <div className="mt-4 px-2">
               <div className="font-mono text-[10px] uppercase tracking-wider text-ember">Content + SEO</div>
               <div className="mt-1 font-display text-lg font-semibold">Publish articles, manage redirects and SEO from the dashboard.</div>
@@ -683,7 +689,7 @@ function AdminShowcase() {
                 Customers open your store from the bot menu and browse products with instant search, wallet balance and one-tap checkout.
               </p>
             </div>
-            <div className="w-64 mx-auto md:mx-0">
+            <div data-testid="mockup-admin-miniapp" className="w-64 mx-auto md:mx-0">
               <PhoneFrame src={botMiniApp.url} alt="Telegram Mini App storefront" />
             </div>
           </div>
