@@ -36,7 +36,7 @@ export function HeroScene() {
           className="absolute right-[0%] top-[2%] w-[44%] [transform-style:preserve-3d]"
           style={{ transform: "translateZ(90px) rotateY(-8deg) rotateZ(2deg)" }}
         >
-          <BrowserFrame src={adminTheme.url} alt="Admin theme panel" label="admin.ott24x7.com" />
+          <BrowserFrame src={adminTheme.url} alt="Admin theme panel" label="admin.ott24x7.com" fit="cover" />
         </motion.div>
 
         {/* Phone / mini app */}
