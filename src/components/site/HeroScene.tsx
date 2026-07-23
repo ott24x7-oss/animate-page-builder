@@ -22,6 +22,7 @@ export function HeroScene() {
       >
         {/* Laptop with website */}
         <motion.div
+          data-testid="mockup-hero-laptop"
           animate={{ y: [0, -10, 0] }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
           className="absolute left-[2%] top-[14%] w-[72%] [transform-style:preserve-3d]"
@@ -31,6 +32,7 @@ export function HeroScene() {
 
         {/* Admin browser floating */}
         <motion.div
+          data-testid="mockup-hero-browser"
           animate={{ y: [0, -8, 0] }}
           transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
           className="absolute right-[0%] top-[2%] w-[44%] [transform-style:preserve-3d]"
@@ -41,6 +43,7 @@ export function HeroScene() {
 
         {/* Phone / mini app */}
         <motion.div
+          data-testid="mockup-hero-phone"
           animate={{ y: [0, -14, 0] }}
           transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
           className="absolute right-[4%] bottom-[-4%] w-[30%] [transform-style:preserve-3d]"
