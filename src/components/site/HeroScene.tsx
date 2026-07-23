@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
-import botMiniApp from "@/assets/phone-mock.jpg.asset.json";
-import website from "@/assets/website-mock.jpg.asset.json";
-import adminTheme from "@/assets/admin-mock.jpg.asset.json";
+import botMiniApp from "@/assets/bot-miniapp.png.asset.json";
+import website from "@/assets/website-hero.png.asset.json";
+import adminTheme from "@/assets/admin-theme.png.asset.json";
 
 /**
  * Real-mockup ecosystem: laptop (website), phone (mini app), floating admin panel.
