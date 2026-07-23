@@ -183,6 +183,7 @@ export function PhoneFrame({ src, alt }: { src: string; alt: string }) {
           </div>
         </div>
       </div>
-
+    </div>
   );
+
 }
