@@ -46,7 +46,7 @@ export function HeroScene() {
           className="absolute right-[4%] bottom-[-4%] w-[30%] [transform-style:preserve-3d]"
           style={{ transform: "translateZ(160px) rotateY(-10deg) rotateZ(-3deg)" }}
         >
-          <PhoneFrame src={botMiniApp.url} alt="Telegram bot and mini app" />
+          <PhoneFrame src={botMiniApp.url} alt="Telegram bot and mini app" fit="cover" />
         </motion.div>
 
         <FloatBadge className="left-[0%] top-[4%]" delay={0}>⚡ Auto-delivery</FloatBadge>
