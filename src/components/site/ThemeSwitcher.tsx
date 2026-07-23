@@ -36,7 +36,7 @@ export function ThemeSwitcher() {
   if (!mounted) return null;
 
   return (
-    <div className="fixed bottom-4 left-4 z-[60] flex items-center gap-1 rounded-full glass px-1.5 py-1.5 shadow-3d">
+    <div className="fixed bottom-4 left-4 z-[60] flex items-center gap-1.5 rounded-full glass-strong px-2 py-1.5">
       {THEMES.map((t) => {
         const active = t.id === theme;
         return (
@@ -44,16 +44,17 @@ export function ThemeSwitcher() {
             key={t.id}
             onClick={() => pick(t.id)}
             aria-label={`Switch to ${t.label} theme`}
+            aria-pressed={active}
             title={t.label}
-            className={`group flex items-center gap-2 rounded-full px-2 py-1.5 text-xs font-medium transition-all ${
-              active ? "bg-white/[0.08] text-foreground" : "text-muted-foreground hover:text-foreground"
+            className={`group flex items-center gap-2 px-3 py-1.5 text-xs font-medium ${
+              active ? "skeuo-primary" : "skeuo text-foreground/80"
             }`}
           >
             <span
-              className="h-4 w-4 rounded-full ring-1 ring-white/20"
+              className="h-3.5 w-3.5 rounded-full ring-1 ring-white/50"
               style={{
                 background: `linear-gradient(135deg, ${t.swatches[0]}, ${t.swatches[1]})`,
-                boxShadow: active ? `0 0 12px ${t.swatches[0]}80` : undefined,
+                boxShadow: `inset 0 1px 0 0 rgba(255,255,255,0.6), 0 1px 2px rgba(0,0,0,0.2)`,
               }}
             />
             <span className={`${active ? "inline" : "hidden sm:inline"}`}>{t.label.split(" ")[0]}</span>
@@ -63,3 +64,4 @@ export function ThemeSwitcher() {
     </div>
   );
 }
+
