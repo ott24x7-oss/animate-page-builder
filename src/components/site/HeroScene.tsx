@@ -71,7 +71,44 @@ function FloatBadge({ children, className, delay }: { children: React.ReactNode;
   );
 }
 
-export function LaptopFrame({ src, alt }: { src: string; alt: string }) {
+type FitMode = "contain" | "cover";
+
+/** Fitted screen area: fixes an aspect ratio and letterboxes (contain) or crops (cover). */
+function ScreenArea({
+  src,
+  alt,
+  fit = "contain",
+  ratio,
+  className = "",
+  children,
+}: {
+  src: string;
+  alt: string;
+  fit?: FitMode;
+  /** width / height, e.g. 16/10 for laptop, 9/19.5 for phone */
+  ratio: number;
+  className?: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <div
+      className={`relative w-full overflow-hidden bg-black ${className}`}
+      style={{ aspectRatio: String(ratio) }}
+    >
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 h-full w-full"
+        style={{ objectFit: fit, objectPosition: "top center" }}
+      />
+      {children}
+    </div>
+  );
+}
+
+export function LaptopFrame({ src, alt, fit = "contain" }: { src: string; alt: string; fit?: FitMode }) {
   return (
     <div className="relative [transform-style:preserve-3d]">
       {/* Ambient contact shadow — heavier on desktop only */}
@@ -89,17 +126,21 @@ export function LaptopFrame({ src, alt }: { src: string; alt: string }) {
             "0 20px 40px -20px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08)",
         }}
       >
-        <div className="relative rounded-[8px] sm:rounded-[12px] overflow-hidden bg-black ring-1 ring-white/5">
+        <ScreenArea
+          src={src}
+          alt={alt}
+          fit={fit}
+          ratio={16 / 10}
+          className="rounded-[8px] sm:rounded-[12px] ring-1 ring-white/5"
+        >
           {/* Camera + sensor */}
           <div className="absolute left-1/2 top-0 z-20 flex h-[6px] w-16 -translate-x-1/2 items-center justify-center rounded-b-[6px] bg-black">
             <span className="h-[3px] w-[3px] rounded-full bg-neutral-700 ring-1 ring-white/10" />
           </div>
-          <img src={src} alt={alt} className="block w-full h-auto" loading="lazy" decoding="async" />
-          {/* Screen gloss — desktop only (expensive gradient overlay) */}
+          {/* Screen gloss — desktop only */}
           <div className="pointer-events-none absolute inset-0 hidden sm:block bg-[linear-gradient(115deg,rgba(255,255,255,0.10)_0%,rgba(255,255,255,0)_28%,rgba(255,255,255,0)_72%,rgba(255,255,255,0.04)_100%)]" />
-          {/* Inner vignette — desktop only */}
           <div className="pointer-events-none absolute inset-0 hidden sm:block shadow-[inset_0_0_60px_rgba(0,0,0,0.55)]" />
-        </div>
+        </ScreenArea>
       </div>
       {/* Hinge / deck */}
       <div
@@ -116,6 +157,7 @@ export function LaptopFrame({ src, alt }: { src: string; alt: string }) {
     </div>
   );
 }
+
 
 export function BrowserFrame({ src, alt, label }: { src: string; alt: string; label?: string }) {
   return (
