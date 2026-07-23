@@ -221,10 +221,11 @@
   padding: 0.6rem 1rem;
   outline: none;
   transition: box-shadow 0.2s ease;
+  &:focus {
+    box-shadow: var(--neu-in), 0 0 0 3px oklch(0.72 0.19 55 / 0.25);
+  }
 }
-@utility neu-input:focus {
-  box-shadow: var(--neu-in), 0 0 0 3px oklch(0.72 0.19 55 / 0.25);
-}
+
 
 /* ---------- Skeuomorphism (buttons, toggles, sliders) ---------- */
 @utility skeuo {
