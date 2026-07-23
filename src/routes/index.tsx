@@ -615,9 +615,10 @@ function Showcase() {
             <Reveal key={s.label} delay={i * 0.1}>
               <TiltCard className="h-full">
                 <div className="glass rounded-3xl p-4 shadow-3d h-full">
-                  <div data-testid={`mockup-showcase-${i}`} className="rounded-2xl overflow-hidden bg-black/40 border border-white/5">
-                    <img src={s.src} alt={s.label} className="block w-full h-auto" loading="lazy" />
+                  <div data-testid={`mockup-showcase-${i}`} className="rounded-2xl overflow-hidden bg-black/40 border border-white/5 aspect-[9/19.5]">
+                    <img src={s.src} alt={s.label} className="block w-full h-full object-cover object-top" loading="lazy" />
                   </div>
+
                   <div className="flex items-center justify-between px-2 pt-4">
                     <div>
                       <div className="font-mono text-[10px] uppercase tracking-wider text-ember">{s.tag}</div>
