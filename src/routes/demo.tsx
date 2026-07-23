@@ -128,6 +128,7 @@ function Demo() {
                   style={{ transform: "rotateX(6deg) rotateY(-12deg)" }}
                 >
                   <motion.div
+                    data-testid="mockup-demo-hero-laptop"
                     animate={{ y: [0, -10, 0] }}
                     transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                     className="absolute left-[0%] top-[16%] w-[72%]"
@@ -136,6 +137,7 @@ function Demo() {
                   </motion.div>
 
                   <motion.div
+                    data-testid="mockup-demo-hero-browser"
                     animate={{ y: [0, -8, 0] }}
                     transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
                     className="absolute right-[-2%] top-[0%] w-[46%]"
@@ -145,6 +147,7 @@ function Demo() {
                   </motion.div>
 
                   <motion.div
+                    data-testid="mockup-demo-hero-phone"
                     animate={{ y: [0, -14, 0] }}
                     transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
                     className="absolute right-[6%] bottom-[-6%] w-[30%]"
@@ -206,7 +209,7 @@ function Demo() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="mt-10 relative rounded-3xl glass p-4 sm:p-8 shadow-3d">
+            <div data-testid="mockup-demo-storefront" className="mt-10 relative rounded-3xl glass p-4 sm:p-8 shadow-3d">
               <div aria-hidden className="absolute inset-0 -z-10 bg-mesh opacity-40 rounded-3xl" />
               <BrowserFrame src={website.url} alt="AutoStore24 storefront" label="panel.ott24x7.com" fit="cover" />
             </div>
@@ -233,12 +236,16 @@ function Demo() {
             </Reveal>
             <Reveal delay={0.1}>
               <div className="grid gap-4">
-                <TiltCard>
-                  <BrowserFrame src={adminTheme.url} alt="Theme customizer" label="admin · theme" fit="cover" />
-                </TiltCard>
-                <TiltCard>
-                  <BrowserFrame src={adminBlog.url} alt="Blog manager" label="admin · blog" fit="cover" />
-                </TiltCard>
+                <div data-testid="mockup-demo-admin-theme">
+                  <TiltCard>
+                    <BrowserFrame src={adminTheme.url} alt="Theme customizer" label="admin · theme" fit="cover" />
+                  </TiltCard>
+                </div>
+                <div data-testid="mockup-demo-admin-blog">
+                  <TiltCard>
+                    <BrowserFrame src={adminBlog.url} alt="Blog manager" label="admin · blog" fit="cover" />
+                  </TiltCard>
+                </div>
               </div>
             </Reveal>
           </div>
@@ -263,7 +270,7 @@ function Demo() {
               <Reveal key={p.t} delay={i * 0.08}>
                 <TiltCard>
                   <div className="glass rounded-3xl p-5 shadow-3d">
-                    <div className="mx-auto w-[70%] sm:w-[80%]">
+                    <div data-testid={`mockup-demo-phone-${i}`} className="mx-auto w-[70%] sm:w-[80%]">
                       <PhoneFrame src={p.src} alt={p.t} fit="cover" />
                     </div>
                     <h3 className="mt-5 font-display text-lg font-semibold text-center">{p.t}</h3>
