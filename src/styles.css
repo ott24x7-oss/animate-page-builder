@@ -73,6 +73,38 @@
   --shadow-3d: 0 40px 80px -30px oklch(0 0 0 / 0.7), 0 20px 40px -20px oklch(0.76 0.18 55 / 0.25);
 }
 
+[data-theme="aurora"] {
+  --background: oklch(0.15 0.04 275);
+  --foreground: oklch(0.98 0.01 250);
+  --card: oklch(0.19 0.05 275);
+  --card-foreground: oklch(0.98 0.01 250);
+  --popover: oklch(0.19 0.05 275);
+  --popover-foreground: oklch(0.98 0.01 250);
+  --primary: oklch(0.7 0.2 290);
+  --primary-foreground: oklch(0.14 0.02 265);
+  --secondary: oklch(0.26 0.05 280);
+  --secondary-foreground: oklch(0.98 0.01 250);
+  --muted: oklch(0.23 0.04 275);
+  --muted-foreground: oklch(0.72 0.04 260);
+  --accent: oklch(0.78 0.15 210);
+  --accent-foreground: oklch(0.14 0.02 265);
+  --border: oklch(0.32 0.05 280 / 60%);
+  --input: oklch(0.3 0.05 280);
+  --ring: oklch(0.7 0.2 290);
+
+  --ember: oklch(0.7 0.2 290);
+  --ember-glow: oklch(0.78 0.15 210);
+  --plasma: oklch(0.78 0.15 210);
+
+  --gradient-ember: linear-gradient(135deg, oklch(0.7 0.2 290), oklch(0.78 0.15 210));
+  --gradient-mesh: radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.7 0.2 290 / 0.28), transparent 60%),
+                   radial-gradient(ellipse 60% 50% at 100% 100%, oklch(0.78 0.15 210 / 0.2), transparent 60%),
+                   radial-gradient(ellipse 60% 50% at 0% 80%, oklch(0.6 0.22 320 / 0.18), transparent 60%);
+
+  --shadow-ember: 0 20px 60px -20px oklch(0.7 0.2 290 / 0.55), 0 0 40px -10px oklch(0.78 0.15 210 / 0.4);
+  --shadow-3d: 0 40px 80px -30px oklch(0 0 0 / 0.7), 0 20px 40px -20px oklch(0.7 0.2 290 / 0.3);
+}
+
 @layer base {
   * { border-color: var(--color-border); }
   html { scroll-behavior: smooth; }
