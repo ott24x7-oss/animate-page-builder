@@ -192,6 +192,35 @@
   color-scheme: dark;
 }
 
+/* Dark-mode overrides for glass overlays and skeuo neutral buttons (light-tuned by default) */
+[data-theme="dark"] {
+  --gradient-panel: linear-gradient(180deg, oklch(0.28 0.014 260 / 0.9), oklch(0.2 0.012 260 / 0.75));
+}
+[data-theme="dark"] .glass,
+[data-theme="dark"] .glass-strong {
+  background: linear-gradient(180deg, oklch(0.26 0.014 260 / 0.75), oklch(0.2 0.012 260 / 0.55));
+  border: 1px solid oklch(1 0 0 / 0.08);
+  box-shadow:
+    0 20px 60px -20px oklch(0 0 0 / 0.6),
+    inset 0 1px 0 0 oklch(1 0 0 / 0.06);
+}
+[data-theme="dark"] .skeuo {
+  background: linear-gradient(180deg, oklch(0.32 0.014 260), oklch(0.22 0.012 260));
+  color: var(--foreground);
+  border: 1px solid oklch(1 0 0 / 0.08);
+}
+[data-theme="dark"] .neu,
+[data-theme="dark"] .neu-sm,
+[data-theme="dark"] .neu-inset,
+[data-theme="dark"] .neu-input {
+  border-color: oklch(1 0 0 / 0.06);
+}
+[data-theme="dark"] .grid-bg {
+  background-image:
+    linear-gradient(oklch(1 0 0 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(1 0 0 / 0.04) 1px, transparent 1px);
+}
+
 /* Dark + Aurora accent combo */
 [data-theme="dark"][data-accent="aurora"],
 [data-theme="dark-aurora"] {
