@@ -36,7 +36,7 @@ export function ThemeSwitcher() {
   if (!mounted) return null;
 
   return (
-    <div className="fixed bottom-4 right-4 z-[60] flex items-center gap-1 rounded-full glass px-1.5 py-1.5 shadow-3d">
+    <div className="fixed bottom-4 left-4 z-[60] flex items-center gap-1 rounded-full glass px-1.5 py-1.5 shadow-3d">
       {THEMES.map((t) => {
         const active = t.id === theme;
         return (
