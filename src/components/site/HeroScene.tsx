@@ -8,9 +8,10 @@ import adminTheme from "@/assets/admin-theme.png.asset.json";
  */
 export function HeroScene() {
   return (
-    <div className="relative aspect-[5/4] w-full [perspective:1800px]">
-      <div className="absolute inset-0 bg-mesh opacity-70 blur-2xl" />
-      <div className="absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-ember opacity-25 blur-3xl animate-pulse-glow" />
+    <div className="relative aspect-[5/4] w-full sm:[perspective:1800px]">
+      <div className="absolute inset-0 bg-mesh opacity-70 sm:blur-2xl" />
+      <div className="hidden sm:block absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-ember opacity-25 blur-3xl animate-pulse-glow" />
+
 
       <motion.div
         initial={{ opacity: 0, rotateX: 25, y: 60 }}
