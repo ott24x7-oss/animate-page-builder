@@ -30,9 +30,8 @@ async function prepare(page: Page, path: string, anchorTestId?: string) {
 }
 
 async function snap(el: Locator, name: string) {
-  await el.scrollIntoViewIfNeeded();
-  // Small settle after scroll before the shot.
-  await el.page().waitForTimeout(150);
+  await el.evaluate((node) => node.scrollIntoView({ block: "center", behavior: "instant" as ScrollBehavior }));
+  await el.page().waitForTimeout(300);
   await expect(el).toHaveScreenshot(`${name}.png`);
 }
 

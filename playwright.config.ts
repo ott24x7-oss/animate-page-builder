@@ -15,6 +15,7 @@ export default defineConfig({
   use: {
     baseURL: "http://localhost:8080",
     viewport: { width: 1280, height: 1800 },
+    reducedMotion: "reduce",
   },
   projects: [
     {
