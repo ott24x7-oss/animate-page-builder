@@ -64,15 +64,15 @@ function BackgroundFX() {
 
 function Hero() {
   return (
-    <section className="relative pt-36 pb-24 sm:pt-44 sm:pb-32">
+    <section className="relative pt-28 pb-16 sm:pt-36 sm:pb-24 lg:pt-44 lg:pb-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-8 items-center">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-8 items-center">
           <div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-xs font-medium"
+              className="inline-flex items-center gap-2 rounded-full glass px-3 py-1.5 text-[10px] sm:text-xs font-medium"
             >
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ember opacity-75" />
@@ -85,11 +85,12 @@ function Hero() {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="mt-6 font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[0.95] tracking-tight"
+              className="mt-5 font-display text-4xl sm:text-6xl lg:text-7xl font-bold leading-[0.95] tracking-tight"
             >
-              Sell digital<br />products{" "}
+              Sell digital products{" "}
               <span className="text-ember animate-gradient bg-clip-text">automatically.</span>
             </motion.h1>
+
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
