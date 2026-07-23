@@ -37,11 +37,14 @@ function Landing() {
         <Marquee />
         <HowItWorks />
         <Channels />
+        <Showcase />
         <Features />
         <Dashboard />
+        <AdminShowcase />
         <Pricing />
         <FAQ />
         <CTA />
+
       </main>
       <Footer />
     </div>
